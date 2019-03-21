@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">低耦合加载</string>
     <string name="to_wrap_activity">Wrap Activity</string>
     <string name="to_wrap_view">Wrap View</string>
     <string name="to_wrap_fragment">Wrap Fragment</string>

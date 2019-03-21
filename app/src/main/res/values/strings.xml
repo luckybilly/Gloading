@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Status Demo</string>
+    <string name="app_name">Gloading</string>
     <string name="to_wrap_activity">wrap Activity</string>
     <string name="to_wrap_fragment">Wrap Fragment</string>
     <string name="to_wrap_view">Wrap View</string>
