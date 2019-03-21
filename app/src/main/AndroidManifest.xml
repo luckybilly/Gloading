@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.billy.android.loadingstatusview">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".wrapactivity.WrapActivityActivity" android:label="@string/to_wrap_activity"/>
+        <activity android:name=".wrapactivity.GlobalSuccessActivity" android:label="@string/to_load_success"/>
+        <activity android:name=".wrapactivity.GlobalFailedActivity" android:label="@string/load_failed"/>
+        <activity android:name=".wrapactivity.GlobalEmptyActivity" android:label="@string/to_load_empty"/>
+        <activity android:name=".wrapactivity.SpecialActivity" android:label="@string/to_special"/>
+        <activity android:name=".wrapview.WrapViewActivity" android:label="@string/to_wrap_view" />
+        <activity android:name=".wrapview.WrapSingleViewActivity" android:label="@string/to_single_view" />
+        <activity android:name=".wrapview.WrapScrollViewItemActivity" android:label="@string/to_scroll_view" />
+        <activity android:name=".wrapview.WrapGridViewItemActivity" android:label="@string/to_grid_view_load" />
+        <activity android:name=".wrapview.WrapRecyclerViewItemActivity" android:label="@string/to_recycler_view_load" />
+
+        <activity android:name=".wrapfragment.WrapFragmentActivity" android:label="@string/to_wrap_fragment" />
+    </application>
+
+</manifest>

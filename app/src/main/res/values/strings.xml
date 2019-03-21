@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Status Demo</string>
+    <string name="to_wrap_activity">wrap Activity</string>
+    <string name="to_wrap_fragment">Wrap Fragment</string>
+    <string name="to_wrap_view">Wrap View</string>
+    <string name="to_load_success">load success</string>
+    <string name="to_load_failed">load failed</string>
+    <string name="to_load_empty">load empty</string>
+    <string name="loading">Loading…</string>
+    <string name="load_failed">Load failed. click to retry!</string>
+    <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>
+    <string name="empty">Empty!</string>
+    <string name="str_none" />
+    <string name="to_single_view">Wrap a single view</string>
+    <string name="to_scroll_view">Wrap views in ScrollView</string>
+    <string name="to_grid_view_load">GridView</string>
+    <string name="to_recycler_view_load">RecyclerView</string>
+    <string name="to_special">Special Loading UI</string>
+    <string name="wrap_single_view">Wrap only one view and show above it</string>
+</resources>
