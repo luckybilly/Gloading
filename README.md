@@ -5,6 +5,8 @@ Show global loading status view in a low coupling way for Android
 
 ## Usage
 
+    JCenter is coming soon.
+
 #### 1. Provide global loading status views
 
 For global usage, create an Adapter to provide views for all status via getView(...) method 
