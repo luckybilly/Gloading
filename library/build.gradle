@@ -19,3 +19,41 @@ android {
 
 dependencies {
 }
+
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'Gloading'
+
+    publishedGroupId = 'com.billy.android'
+    libraryName = 'Gloading'
+    artifact = 'Gloading'
+
+    libraryDescription = 'Show global loading status view in a low coupling way for Android App'
+
+    siteUrl = 'https://github.com/luckybilly/Gloading'
+    gitUrl = 'git@github.com:luckybilly/Gloading.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'billy'
+    developerName = 'billy'
+    developerEmail = 'okkanan@hotmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: rootProject.file('bintray.gradle')
+
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo-local')) //deploy到本地仓库
+            pom.groupId = publishedGroupId
+            pom.artifactId = artifact
+            pom.version = libraryVersion + '-SNAPSHOT'
+        }
+    }
+}

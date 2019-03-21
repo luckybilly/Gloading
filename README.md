@@ -1,11 +1,15 @@
 # Gloading
 
-Show global loading status view in a low coupling way for Android
+Show global loading status view in a low coupling way for Android App
 
+
+Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android/Gloading/images/download.svg)](https://bintray.com/hellobilly/android/Gloading/_latestVersion)
 
 ## Usage
 
-    JCenter is coming soon.
+```groovy
+compile 'com.billy.android:Gloading:1.0.0'
+```
 
 #### 1. Provide global loading status views
 
