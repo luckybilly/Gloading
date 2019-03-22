@@ -22,16 +22,16 @@ dependencies {
 
 ext {
     bintrayRepo = 'android'
-    bintrayName = 'Gloading'
+    bintrayName = 'gloading'
 
     publishedGroupId = 'com.billy.android'
     libraryName = 'Gloading'
-    artifact = 'Gloading'
+    artifact = 'gloading'
 
     libraryDescription = 'Show global loading status view in a low coupling way for Android App'
 
     siteUrl = 'https://github.com/luckybilly/Gloading'
-    gitUrl = 'git@github.com:luckybilly/Gloading.git'
+    gitUrl = 'https://github.com/luckybilly/Gloading.git'
 
     libraryVersion = '1.0.0'
 
