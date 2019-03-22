@@ -2,9 +2,24 @@
 
 Show global loading status view in a low coupling way for Android App.
 
-[Docs](https://luckybilly.github.io/Gloading/)
+[JavaDocs](https://luckybilly.github.io/Gloading/) | [Download Demo](https://github.com/luckybilly/Gloading/raw/master/demo.apk)
 
 Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
+
+## Demo
+
+Wrap activity page
+
+Load success|Load failed and click retry|Load success with empty data|Tis loading status UI is special
+:---:|:---:|:---:|:---:
+<img src="image/en_load_success.gif" width="200" />|<img src="image/en_load_failed.gif" width="200" />|<img src="image/en_load_empty_data.gif" width="200" />|<img src="image/en_load_special_loading.gif" width="200" />
+
+Wrap view(s)
+
+Wrap single view|Wrap views|Wrap in GridView|Wrap in RecyclerView<br>
+:---:|:---:|:---:|:---:
+<img src="image/en_wrap_single_view.gif" width="200" />|<img src="image/en_wrap_scroll_view.gif" width="200" />|<img src="image/en_wrap_grid_view.gif" width="200" />|<img src="image/en_wrap_recycler_view.gif" width="200" />
+
 
 ## Usage
 
@@ -203,3 +218,7 @@ public class GlobalFailedActivity extends BaseActivity {
 //debug mode. if set true, logs will print into logcat
 Gloading.debug(trueOrFalse);
 ```
+
+## Thanks
+
+Pictures in demo app all from: https://www.thiswaifudoesnotexist.net/
