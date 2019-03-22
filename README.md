@@ -16,7 +16,7 @@ Load success|Load failed and click retry|Load success with empty data|Tis loadin
 
 Wrap view(s)
 
-Wrap single view|Wrap views|Wrap in GridView|Wrap in RecyclerView<br>
+Wrap single view|Wrap views|Wrap in GridView|Wrap in RecyclerView<br>No words below
 :---:|:---:|:---:|:---:
 <img src="image/en_wrap_single_view.gif" width="200" />|<img src="image/en_wrap_scroll_view.gif" width="200" />|<img src="image/en_wrap_grid_view.gif" width="200" />|<img src="image/en_wrap_recycler_view.gif" width="200" />
 
