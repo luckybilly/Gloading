@@ -10,23 +10,21 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
 /**
- * manage loading status view
- * <pre>
- * usage:
- *  //if set true, logs will print into logcat
- *  Gloading.debug(trueOrFalse);
- *  //init the default loading status view creator ({@link Adapter})
- *  Gloading.initDefault(adapter);
- *  //wrap an activity. return the holder
- *  Holder holder = Gloading.getDefault().wrap(activity);
- *  //wrap an activity and set retry task. return the holder
- *  Holder holder = Gloading.getDefault().wrap(activity).withRetry(retryTask);
- *
- *  holder.showLoading() //show loading status view by holder
- *  holder.showLoadSuccess() //show load success status view by holder (frequently, hide gloading)
- *  holder.showFailed() //show load failed status view by holder (frequently, needs retry task)
+ * manage loading status view<br>
+ * usage:<br>
+ *  //if set true, logs will print into logcat<br>
+ *  Gloading.debug(trueOrFalse);<br>
+ *  //init the default loading status view creator ({@link Adapter})<br>
+ *  Gloading.initDefault(adapter);<br>
+ *  //wrap an activity. return the holder<br>
+ *  Holder holder = Gloading.getDefault().wrap(activity);<br>
+ *  //wrap an activity and set retry task. return the holder<br>
+ *  Holder holder = Gloading.getDefault().wrap(activity).withRetry(retryTask);<br>
+ *  <br>
+ *  holder.showLoading() //show loading status view by holder<br>
+ *  holder.showLoadSuccess() //show load success status view by holder (frequently, hide gloading)<br>
+ *  holder.showFailed() //show load failed status view by holder (frequently, needs retry task)<br>
  *  holder.showEmpty() //show empty status view by holder. (load completed, but data is empty)
- * </pre>
  *
  * @author billy.qi
  * @since 19/3/18 17:49
@@ -42,7 +40,7 @@ public class Gloading {
     private static boolean DEBUG = false;
 
     /**
-     * Status view to show current page loading status
+     * Provides view to show current loading status
      */
     public interface Adapter {
         /**
@@ -134,8 +132,8 @@ public class Gloading {
     }
 
     /**
-     * Gloading holder
-     * create by {@link Gloading#wrap(Activity)} or {@link Gloading#wrap(View)}
+     * Gloading holder<br>
+     * create by {@link Gloading#wrap(Activity)} or {@link Gloading#wrap(View)}<br>
      * the core API for showing all status view
      */
     public static class Holder {
@@ -165,7 +163,7 @@ public class Gloading {
         }
 
         /**
-         * set extension data. maybe we need this data within {@link Adapter#getView(Holder, View, int)}
+         * set extension data
          * @param data extension data
          * @return this
          */
