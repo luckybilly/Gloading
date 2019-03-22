@@ -10,7 +10,7 @@ Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android
 
 Wrap activity page
 
-Load success|Load failed and click retry|Load success with empty data|Tis loading status UI is special
+Load success|Load failed and click retry|Load success with empty data|This loading status UI is special
 :---:|:---:|:---:|:---:
 <img src="image/en_load_success.gif" width="200" />|<img src="image/en_load_failed.gif" width="200" />|<img src="image/en_load_empty_data.gif" width="200" />|<img src="image/en_load_special_loading.gif" width="200" />
 
