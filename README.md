@@ -2,6 +2,7 @@
 
 Show global loading status view in a low coupling way for Android App.
 
+[Docs](https://luckybilly.github.io/Gloading/)
 
 Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
 
@@ -112,7 +113,6 @@ public abstract class BaseActivity extends Activity {
     /**
      * make a Gloading.Holder wrap with current activity by default
      * override this method in subclass to do special initialization
-     * @see SpecialActivity
      */
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {
@@ -203,5 +203,3 @@ public class GlobalFailedActivity extends BaseActivity {
 //debug mode. if set true, logs will print into logcat
 Gloading.debug(trueOrFalse);
 ```
-
-## More details is coming soon...

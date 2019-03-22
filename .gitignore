@@ -7,3 +7,5 @@
 /captures
 .externalNativeBuild
 repo-local
+temp-clone
+refresh_docs.sh
