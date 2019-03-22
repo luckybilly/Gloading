@@ -154,7 +154,11 @@ public class Gloading {
             this.mWrapper = wrapper;
         }
 
-        /** set retry task when user click the retry button in load failed page  */
+        /**
+         * set retry task when user click the retry button in load failed page
+         * @param task when user click in load failed UI, run this task
+         * @return this
+         */
         public Holder withRetry(Runnable task) {
             mRetryTask = task;
             return this;
@@ -253,18 +257,26 @@ public class Gloading {
             return mContext;
         }
 
-        /** get wrapper (container of gloading) */
+        /**
+         * get wrapper
+         * @return container of gloading
+         */
         public ViewGroup getWrapper() {
             return mWrapper;
         }
 
-        /** get retry task */
+        /**
+         * get retry task
+         * @return retry task
+         */
         public Runnable getRetryTask() {
             return mRetryTask;
         }
 
         /**
+         *
          * get extension data
+         * @param <T> return type
          * @return data
          */
         public <T> T getData() {
