@@ -116,6 +116,8 @@ holder.showFailed()
 holder.showEmpty()
 ```
 
+More [Gloading.Holder APIs](https://luckybilly.github.io/Gloading/com/billy/android/loading/Gloading.Holder.html)
+
 ## Practice
 
 ### 1. Wrap into BaseActivity/BaseFragment
