@@ -1,5 +1,7 @@
 # Gloading
 
+[中文文档](README-zh-CN.md)
+
 Show global loading status view in a low coupling way for Android App.
 
 [JavaDocs](https://luckybilly.github.io/Gloading/) | [Download Demo](https://github.com/luckybilly/Gloading/raw/master/demo.apk)
