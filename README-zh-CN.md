@@ -1,10 +1,15 @@
 # Gloading
 
-深度解耦Android App中全局加载中、加载失败及空数据视图
-
 [JavaDocs](https://luckybilly.github.io/Gloading/) | [Demo下载](https://github.com/luckybilly/Gloading/raw/master/demo.apk)
 
 最新版本: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
+
+- 深度解耦Android App中全局加载中、加载失败及空数据视图，为组件化改造过程中的解耦长征助力
+- 分离全局加载状态视图的实现和使用
+- 不需要在每个页面的布局文件中额外添加加载状态视图
+- 可用于Activity、Fragment，也可用于为某个View显示加载状态，还可用于各种通过列表Item（ListView、RecyclerView等）
+- 轻量级：只有一个java文件，没有任何其它依赖，不到300行，其中注释占100+行，aar仅6K
+- minSdkVersion为1
 
 ## 演示
 
@@ -120,7 +125,7 @@ public class GlobalAdapter implements Gloading.Adapter {
     }
 }
 ```
-3、 用初始化`Gloading`的默认`Adapter`
+3、 初始化`Gloading`的默认`Adapter`
 
 ```java
 Gloading.initDefault(new GlobalAdapter());
