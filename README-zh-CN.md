@@ -9,7 +9,9 @@
 - 不需要在每个页面的布局文件中额外添加加载状态视图
 - 可用于Activity、Fragment，也可用于为某个View显示加载状态，还可用于各种通过列表Item（ListView、RecyclerView等）
 - 轻量级：只有一个java文件，没有任何其它依赖，不到300行，其中注释占100+行，aar仅6K
-- minSdkVersion为1
+- 兼容性好：
+    - android系统版本从api 1开始兼容
+    - 兼容绝大多数第三方炫酷的LoadingView（在Adapter中将其作为View提供给Gloading）
 
 ## 演示
 
