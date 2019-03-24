@@ -10,7 +10,7 @@ Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android
 
 Lightweight: aar is less than 6KB, just 170 code lines and 104 comment lines within only 1 java file.
 
-Design as Adapter pattern,with good compatibility: it is well compatible: most third-party LoadingViews can be used as Gloading views in the Adapter
+Design as Adapter pattern,with good compatibility: most third-party LoadingViews can be used as Gloading views in the Adapter
 
 ## Demo
 
