@@ -7,7 +7,7 @@
 - 深度解耦Android App中全局加载中、加载失败及空数据视图，为组件化改造过程中的解耦长征助力
 - 分离全局加载状态视图的实现和使用
 - 不需要在每个页面的布局文件中额外添加加载状态视图
-- 可用于Activity、Fragment，也可用于为某个View显示加载状态，还可用于各种通过列表Item（ListView、RecyclerView等）
+- 可用于Activity、Fragment，也可用于为某个View显示加载状态，还可用于各种列表Item（ListView、RecyclerView等）
 - 轻量级：只有一个java文件，没有任何其它依赖，不到300行，其中注释占100+行，aar仅6K
 - 兼容性好：
     - android系统版本从api 1开始兼容
@@ -181,8 +181,34 @@ holder.showLoadingStatus(status)
 
 每个App的`LoadingView`可能会不同，只需为每个App提供不同的`Adapter`，不同App调用不同的`Gloading.initDefault(new GlobalAdapter());`，具体页面中的使用代码无需改动。
 
-注：如果使用[AutoRegister](https://github.com/luckybilly/AutoRegister)，则只需在不同App中创建各自的	`Adapter`实现类即可，无需手动注册。
+注：如果使用[AutoRegister](https://github.com/luckybilly/AutoRegister)，则只需在不同App中创建各自的	`Adapter`实现类即可，无需手动注册。只需改动2处gradle文件即可：
 
+- 修改根目录build.gradle，添加对AutoRegister的依赖
+  
+```groovy
+buildscript {
+  //...
+  dependencies {
+    //...
+    classpath 'com.billy.android:autoregister:使用最新版'
+  }
+}
+```
+  
+- 修改主application module下的build.gradle，添加如下代码即可实现Adapter的自动注册
+  
+```groovy
+apply plugin: 'auto-register'
+autoregister {
+  registerInfo = [
+     [
+         'scanInterface'             : 'com.billy.android.loading.Gloading$Adapter'
+         , 'codeInsertToClassName'   : 'com.billy.android.loading.Gloading'
+         , 'registerMethodName'      : 'initDefault'
+     ]
+  ]
+}
+```
 
 
 ## 开启/关闭Debug模式
