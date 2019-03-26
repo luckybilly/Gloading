@@ -195,3 +195,7 @@ Gloading.debug(trueOrFalse);
 ## 鸣谢
 
 Demo中的卡通图片均来自: https://www.thiswaifudoesnotexist.net/
+
+Demo中使用的全局LoadingView图片均取自：https://www.iconfont.cn/
+
+Demo中的[特殊Loading动画](https://github.com/luckybilly/Gloading/blob/master/app/src/main/java/com/billy/android/loadingstatusview/wrapactivity/adapter/view/anim/LVFinePoiStar.java)来自：https://github.com/ldoublem/LoadingView/

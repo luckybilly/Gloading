@@ -230,3 +230,7 @@ Gloading.debug(trueOrFalse);
 ## Thanks
 
 Pictures in demo app all from: https://www.thiswaifudoesnotexist.net/
+
+Global LoadingView pictures used in demo all from: https://www.iconfont.cn/
+
+Special LoadingView UI used in demo from: https://github.com/ldoublem/LoadingView/
