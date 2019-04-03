@@ -2,7 +2,7 @@
 
 [JavaDocs](https://luckybilly.github.io/Gloading/) | [Demo下载](https://github.com/luckybilly/Gloading/raw/master/demo.apk)
 
-最新版本: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
+最新版本: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)  [![](https://img.shields.io/badge/aar%20size-6KB-blue.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
 
 - 深度解耦Android App中全局加载中、加载失败及空数据视图，为组件化改造过程中的解耦长征助力
 - 分离全局加载状态视图的实现和使用
@@ -12,6 +12,7 @@
 - 兼容性好：
     - android系统版本从api 1开始兼容
     - 兼容绝大多数第三方炫酷的LoadingView（在Adapter中将其作为View提供给Gloading）
+- 可扩展：默认提供4种加载状态（加载中、加载失败、空数据、加载成功），支持自定义其它状态
 
 ## 演示
 

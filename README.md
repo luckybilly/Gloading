@@ -6,9 +6,11 @@ Show global loading status view in a low coupling way for Android App.
 
 [JavaDocs](https://luckybilly.github.io/Gloading/) | [Download Demo](https://github.com/luckybilly/Gloading/raw/master/demo.apk)
 
-Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion)
+Latest Version: [![Download](https://api.bintray.com/packages/hellobilly/android/gloading/images/download.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion) [![](https://img.shields.io/badge/aar%20size-6KB-blue.svg)](https://bintray.com/hellobilly/android/gloading/_latestVersion) 
 
 Lightweight: aar is less than 6KB, just 170 code lines and 104 comment lines within only 1 java file.
+
+
 
 Design as Adapter pattern,with good compatibility: most third-party LoadingViews can be used as Gloading views in the Adapter
 
