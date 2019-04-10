@@ -54,12 +54,13 @@ public class GlobalLoadingStatusView extends LinearLayout implements View.OnClic
             case STATUS_LOADING: str = R.string.loading; break;
             case STATUS_LOAD_FAILED:
                 str = R.string.load_failed;
+                image = R.drawable.icon_failed;
                 Boolean networkConn = isNetworkConnected(getContext());
                 if (networkConn != null && !networkConn) {
                     str = R.string.load_failed_no_network;
+                    image = R.drawable.icon_no_wifi;
                 }
                 onClickListener = this;
-                image = R.drawable.icon_failed;
                 break;
             case STATUS_EMPTY_DATA:
                 str = R.string.empty;
