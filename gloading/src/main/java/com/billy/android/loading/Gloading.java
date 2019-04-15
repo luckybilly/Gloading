@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
+import java.util.Map;
+
 /**
  * manage loading status view<br>
  * usage:<br>
@@ -132,6 +134,20 @@ public class Gloading {
     }
 
     /**
+     * Gloading status callback when status view has been changed
+     */
+    public interface GloadingStatusChangeListener {
+        void onStatusChange(int status, View statusView);
+    }
+
+    /**
+     * Gloading status callback when status view has been clicked
+     */
+    public interface GloadingStatusClickListener{
+        void clickWithStatus(int status);
+    }
+
+    /**
      * Gloading holder<br>
      * create by {@link Gloading#wrap(Activity)} or {@link Gloading#wrap(View)}<br>
      * the core API for showing all status view
@@ -139,12 +155,19 @@ public class Gloading {
     public static class Holder {
         private Adapter mAdapter;
         private Context mContext;
+        private GloadingStatusClickListener mStatusClickListener;
+        private GloadingStatusChangeListener mStatusChangeListener;
         private Runnable mRetryTask;
         private View mCurStatusView;
         private ViewGroup mWrapper;
         private int curState;
         private SparseArray<View> mStatusViews = new SparseArray<>(4);
         private Object mData;
+        /**
+         * key : status value
+         * value : data which you want indeed.
+         */
+        private Map<Integer, Object> mStatusData;
 
         private Holder(Adapter adapter, Context context, ViewGroup wrapper) {
             this.mAdapter = adapter;
@@ -153,10 +176,29 @@ public class Gloading {
         }
 
         /**
+         * invoked when status view is clicked
+         */
+        public Holder withStatusClick(GloadingStatusClickListener listener) {
+            this.mStatusClickListener= listener;
+            return this;
+        }
+
+        /**
+         * invoked when status view is changed.
+         */
+        public Holder withStatusChange(GloadingStatusChangeListener listener){
+            this.mStatusChangeListener = listener;
+            return this;
+        }
+
+        /**
          * set retry task when user click the retry button in load failed page
          * @param task when user click in load failed UI, run this task
          * @return this
+         *
+         * use withStatusClick instead.
          */
+        @Deprecated
         public Holder withRetry(Runnable task) {
             mRetryTask = task;
             return this;
@@ -167,8 +209,17 @@ public class Gloading {
          * @param data extension data
          * @return this
          */
+        @Deprecated
         public Holder withData(Object data) {
             this.mData = data;
+            return this;
+        }
+
+        /**
+         * set extension data with gloading status
+         */
+        public Holder withStatsuData(Map<Integer, Object> statusData){
+            this.mStatusData = statusData;
             return this;
         }
 
@@ -231,6 +282,9 @@ public class Gloading {
                 }
                 mCurStatusView = view;
                 mStatusViews.put(status, view);
+                if(mStatusChangeListener != null){
+                    mStatusChangeListener.onStatusChange(curState, mCurStatusView);
+                }
             } catch(Exception e) {
                 if (DEBUG) {
                     e.printStackTrace();
@@ -266,9 +320,19 @@ public class Gloading {
         /**
          * get retry task
          * @return retry task
+         *
+         * use getStatusClick instead
          */
+        @Deprecated
         public Runnable getRetryTask() {
             return mRetryTask;
+        }
+
+        /**
+         * get status callback when status view click.
+         */
+        public GloadingStatusClickListener getStatusClick(){
+            return mStatusClickListener;
         }
 
         /**
@@ -276,7 +340,10 @@ public class Gloading {
          * get extension data
          * @param <T> return type
          * @return data
+         *
+         * use getStatusData instead
          */
+        @Deprecated
         public <T> T getData() {
             try {
                 return (T) mData;
@@ -286,6 +353,10 @@ public class Gloading {
                 }
             }
             return null;
+        }
+
+        public Map<Integer, Object> getStatusData(){
+            return mStatusData;
         }
     }
 
