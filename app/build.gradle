@@ -28,7 +28,8 @@ configurations.all {
     }
 }
 dependencies {
-    compile 'com.billy.android:gloading:1.0.0'
+    implementation 'com.billy.android:gloading:1.0.1'
+//    implementation project(':gloading')
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     api 'com.android.support:recyclerview-v7:26.1.0'
 //    api 'com.android.support:appcompat-v7:26.1.0'
