@@ -26,9 +26,14 @@ public class SpecialAdapter implements Gloading.Adapter {
     public View getView(Gloading.Holder holder, View convertView, int status) {
         if (status == STATUS_LOADING) {
             //only loading UI special
+            SpecialLoadingStatusView view;
             if (convertView == null || !(convertView instanceof SpecialLoadingStatusView)) {
-                convertView = new SpecialLoadingStatusView(holder.getContext());
+                view = new SpecialLoadingStatusView(holder.getContext());
+                convertView = view;
+            } else {
+                view = (SpecialLoadingStatusView) convertView;
             }
+            view.start();
         } else {
             //other status use global UI
             GlobalLoadingStatusView view;
@@ -50,16 +55,27 @@ public class SpecialAdapter implements Gloading.Adapter {
      */
     class SpecialLoadingStatusView extends RelativeLayout {
 
+        private final LVFinePoiStar lvFinePoiStar;
+
         public SpecialLoadingStatusView(Context context) {
             super(context);
             setGravity(Gravity.CENTER);
             setBackgroundColor(0xCCCCCCCC);
             LayoutInflater.from(context).inflate(R.layout.view_special_loading, this, true);
 
-            LVFinePoiStar lvFinePoiStar = findViewById(R.id.loading_anim);
+            lvFinePoiStar = findViewById(R.id.loading_anim);
             lvFinePoiStar.setViewColor(Color.WHITE);
             lvFinePoiStar.setCircleColor(Color.YELLOW);
             lvFinePoiStar.setDrawPath(true);
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            lvFinePoiStar.stopAnim();
+        }
+
+        public void start() {
             lvFinePoiStar.startAnim(2000);
         }
     }
