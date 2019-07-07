@@ -1,8 +1,10 @@
 package com.billy.android.loadingstatusview.wrapview;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -38,7 +40,7 @@ public class WrapSingleViewActivity extends BaseActivity {
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int size = dm.widthPixels * 3 / 4;
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) imageView.getLayoutParams();
         layoutParams.width = size;
         layoutParams.height = size;
         //failed by an error image url
