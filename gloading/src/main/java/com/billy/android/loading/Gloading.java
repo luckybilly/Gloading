@@ -115,7 +115,7 @@ public class Gloading {
      * @param view view to be wrapped
      * @return Holder
      */
-    public Holder wrap(View view) {
+    public Holder wrapDefaultByFrameLayout(View view) {
         FrameLayout wrapper = new FrameLayout(view.getContext());
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp != null) {
@@ -131,6 +131,63 @@ public class Gloading {
         wrapper.addView(view, newLp);
         return new Holder(mAdapter, view.getContext(), wrapper);
     }
+
+    /**
+     * if(view not has parent){
+     *     return wrapDefaultByFrameLayout();
+     * }else if(constraintLayoutClass.isAssignableFrom(view.getParent().getClass()){
+     *     return wrapConstraintLayout()
+     * }else if(***.class.isAssignableFrom(view.getParent().getClass()){
+     *     return wrap***Layout();
+     * }else{
+     *     return wrapDefaultByFrameLayout()
+     * }
+     */
+
+    public Holder wrap(View view){
+
+        ViewGroup viewGroup = (ViewGroup)view.getParent();
+        if(viewGroup == null){
+            return wrapDefaultByFrameLayout(view);
+        }
+
+        boolean shouldWrapByConstraintLayout = false;
+        Class<? extends ViewGroup> constraintLayoutClass = null;
+        Class<? extends ViewGroup.LayoutParams> constraintLayout_LayoutParamsClass = null;
+        try{
+            constraintLayoutClass = (Class<? extends ViewGroup>)this.getClass().getClassLoader().loadClass("android.support.constraint.ConstraintLayout");
+            constraintLayout_LayoutParamsClass = (Class<? extends ViewGroup.LayoutParams>)this.getClass().getClassLoader().loadClass("android.support.constraint.ConstraintLayout$LayoutParams");
+            if(constraintLayoutClass.isAssignableFrom(viewGroup.getClass())){
+                shouldWrapByConstraintLayout = true;
+            }
+        }catch (Exception e){ }
+        if(shouldWrapByConstraintLayout){
+            try{
+                return wrapLayout(view,viewGroup,constraintLayoutClass,constraintLayout_LayoutParamsClass);
+            }catch (Exception e){
+                Log.e("wrapByConstraintLayout","fail for " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
+        return wrapDefaultByFrameLayout(view);
+    }
+
+
+
+    public <VG extends ViewGroup,LP extends ViewGroup.LayoutParams> Holder wrapLayout(View view,ViewGroup root,Class<VG> viewGroupClass,Class<LP> layoutParansClass) throws Exception{
+        root.removeView(view);
+        ViewGroup wrapper = viewGroupClass.getConstructor(Context.class).newInstance(view.getContext());
+        root.addView(wrapper,view.getLayoutParams());
+        ViewGroup.LayoutParams lp =layoutParansClass.getConstructor(int.class,int.class).newInstance(view.getLayoutParams().width,view.getLayoutParams().height);
+        wrapper.addView(view,lp);
+        return new Holder(mAdapter,view.getContext(),wrapper);
+
+    }
+
+
+
 
     /**
      * Gloading holder<br>
