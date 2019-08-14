@@ -35,7 +35,7 @@ public class Gloading {
     public static final int STATUS_LOAD_SUCCESS = 2;
     public static final int STATUS_LOAD_FAILED = 3;
     public static final int STATUS_EMPTY_DATA = 4;
-    
+
     private static volatile Gloading mDefault;
     private Adapter mAdapter;
     private static boolean DEBUG = false;
@@ -46,9 +46,9 @@ public class Gloading {
     public interface Adapter {
         /**
          * get view for current status
-         * @param holder Holder
+         * @param holder      Holder
          * @param convertView The old view to reuse, if possible.
-         * @param status current status
+         * @param status      current status
          * @return status view to show. Maybe convertView for reuse.
          * @see Holder
          */
@@ -63,7 +63,8 @@ public class Gloading {
         DEBUG = debug;
     }
 
-    private Gloading() { }
+    private Gloading() {
+    }
 
     /**
      * Create a new Gloading different from the default one
@@ -115,7 +116,7 @@ public class Gloading {
      * @param view view to be wrapped
      * @return Holder
      */
-    public Holder wrap(View view) {
+    public Holder wrapDefaultByFrameLayout(View view) {
         FrameLayout wrapper = new FrameLayout(view.getContext());
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp != null) {
@@ -129,6 +130,62 @@ public class Gloading {
         }
         LayoutParams newLp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         wrapper.addView(view, newLp);
+        return new Holder(mAdapter, view.getContext(), wrapper);
+    }
+
+    public Holder wrap(View view) {
+        ViewGroup viewGroup = (ViewGroup) view.getParent();
+        if (viewGroup == null) {
+            return wrapDefaultByFrameLayout(view);
+        }
+
+        boolean shouldWrapByConstraintLayout = false;
+        boolean shouldWrapByXConstraintLayout = false;
+        Class<? extends ViewGroup> constraintLayoutClass = null;
+        Class<? extends ViewGroup.LayoutParams> constraintLayout_LayoutParamsClass = null;
+        Class<? extends ViewGroup> constraintLayoutXClass = null;
+        Class<? extends ViewGroup.LayoutParams> constraintLayout_XLayoutParamsClass = null;
+        try {
+            constraintLayoutClass = (Class<? extends ViewGroup>) this.getClass().getClassLoader().loadClass("android.support.constraint.ConstraintLayout");
+            constraintLayout_LayoutParamsClass = (Class<? extends ViewGroup.LayoutParams>) this.getClass().getClassLoader().loadClass("android.support.constraint.ConstraintLayout$LayoutParams");
+            if (constraintLayoutClass.isAssignableFrom(viewGroup.getClass())) {
+                shouldWrapByConstraintLayout = true;
+            }
+            constraintLayoutXClass = (Class<? extends ViewGroup>) this.getClass().getClassLoader().loadClass("androidx.constraintlayout.widget.ConstraintLayout");
+            constraintLayout_XLayoutParamsClass = (Class<? extends ViewGroup.LayoutParams>) this.getClass().getClassLoader().loadClass("androidx.constraintlayout.widget.ConstraintLayout$LayoutParams");
+            if (constraintLayoutXClass.isAssignableFrom(viewGroup.getClass())) {
+                shouldWrapByXConstraintLayout = true;
+            }
+        } catch (Exception e) {
+        }
+        if (shouldWrapByConstraintLayout) {
+            try {
+                return wrapLayout(view, viewGroup, constraintLayoutClass, constraintLayout_LayoutParamsClass);
+            } catch (Exception e) {
+                Log.e("wrapByConstraintLayout", "fail for " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+        if (shouldWrapByXConstraintLayout) {
+            try {
+                return wrapLayout(view, viewGroup, constraintLayoutXClass, constraintLayout_XLayoutParamsClass);
+            } catch (Exception e) {
+                Log.e("wrapByConstraintLayout", "fail for " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
+        return wrapDefaultByFrameLayout(view);
+    }
+
+    public <VG extends ViewGroup, LP extends ViewGroup.LayoutParams> Holder wrapLayout(View view, ViewGroup root, Class<VG> viewGroupClass, Class<LP> layoutParamsClass) throws Exception {
+        root.removeView(view);
+        ViewGroup wrapper = viewGroupClass.getConstructor(Context.class).newInstance(view.getContext());
+        root.addView(wrapper, view.getLayoutParams());
+        ViewGroup.LayoutParams lp = layoutParamsClass.getConstructor(int.class, int.class).newInstance(view.getLayoutParams().width, view.getLayoutParams().height);
+        wrapper.addView(view, lp);
         return new Holder(mAdapter, view.getContext(), wrapper);
     }
 
@@ -173,19 +230,30 @@ public class Gloading {
             return this;
         }
 
-        /** show UI for status: {@link #STATUS_LOADING} */
+        /**
+         * show UI for status: {@link #STATUS_LOADING}
+         */
         public void showLoading() {
             showLoadingStatus(STATUS_LOADING);
         }
-        /** show UI for status: {@link #STATUS_LOAD_SUCCESS} */
+
+        /**
+         * show UI for status: {@link #STATUS_LOAD_SUCCESS}
+         */
         public void showLoadSuccess() {
             showLoadingStatus(STATUS_LOAD_SUCCESS);
         }
-        /** show UI for status: {@link #STATUS_LOAD_FAILED} */
+
+        /**
+         * show UI for status: {@link #STATUS_LOAD_FAILED}
+         */
         public void showLoadFailed() {
             showLoadingStatus(STATUS_LOAD_FAILED);
         }
-        /** show UI for status: {@link #STATUS_EMPTY_DATA} */
+
+        /**
+         * show UI for status: {@link #STATUS_EMPTY_DATA}
+         */
         public void showEmpty() {
             showLoadingStatus(STATUS_EMPTY_DATA);
         }
@@ -223,19 +291,18 @@ public class Gloading {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         view.setElevation(Float.MAX_VALUE);
                     }
-                    mWrapper.addView(view);
-                    ViewGroup.LayoutParams lp = view.getLayoutParams();
-                    if (lp != null) {
-                        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                        lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    ViewGroup.LayoutParams plp = mWrapper.getLayoutParams();
+                    if (plp != null) {//将父布局mWrapper的宽高属性设置给自定义的loading布局view，防止出现显示问题
+                        view.setLayoutParams(new ViewGroup.LayoutParams(plp.width, plp.height));
                     }
+                    mWrapper.addView(view);
                 } else if (mWrapper.indexOfChild(view) != mWrapper.getChildCount() - 1) {
                     // make sure loading status view at the front
                     view.bringToFront();
                 }
                 mCurStatusView = view;
                 mStatusViews.put(status, view);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 if (DEBUG) {
                     e.printStackTrace();
                 }
@@ -284,7 +351,7 @@ public class Gloading {
         public <T> T getData() {
             try {
                 return (T) mData;
-            } catch(Exception e) {
+            } catch (Exception e) {
                 if (DEBUG) {
                     e.printStackTrace();
                 }

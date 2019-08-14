@@ -16,6 +16,7 @@ import static com.billy.android.loading.Gloading.STATUS_LOADING;
 import static com.billy.android.loading.Gloading.STATUS_LOAD_FAILED;
 import static com.billy.android.loading.Gloading.STATUS_LOAD_SUCCESS;
 import static com.billy.android.loadingstatusview.util.Util.isNetworkConnected;
+import static com.billy.android.loadingstatusview.util.Util.startRotateAnimation;
 
 /**
  * simple loading status view for global usage
@@ -47,7 +48,7 @@ public class GlobalLoadingStatusView extends LinearLayout implements View.OnClic
     public void setStatus(int status) {
         boolean show = true;
         View.OnClickListener onClickListener = null;
-        int image = R.drawable.loading;
+        int image = R.drawable.icon_loading;
         int str = R.string.str_none;
         switch (status) {
             case STATUS_LOAD_SUCCESS: show = false; break;
@@ -69,6 +70,12 @@ public class GlobalLoadingStatusView extends LinearLayout implements View.OnClic
             default: break;
         }
         mImageView.setImageResource(image);
+        //使用代码方式让图标旋转，xml方式在部分手机上无效
+        if (status == STATUS_LOADING) {
+            startRotateAnimation(mImageView);
+        } else {
+            mImageView.clearAnimation();
+        }
         setOnClickListener(onClickListener);
         mTextView.setText(str);
         setVisibility(show ? View.VISIBLE : View.GONE);

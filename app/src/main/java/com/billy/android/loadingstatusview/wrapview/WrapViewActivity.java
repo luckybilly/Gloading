@@ -30,4 +30,7 @@ public class WrapViewActivity extends Activity {
     public void toRecyclerViewLoadingView(View view) {
         startActivity(new Intent(this, WrapRecyclerViewItemActivity.class));
     }
+    public void toConstraintLoadingView(View view){
+        startActivity(new Intent(this, WrapConstraintViewActivity.class));
+    }
 }

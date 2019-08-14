@@ -31,5 +31,11 @@
         android:text="@string/to_recycler_view_load"
         android:onClick="toRecyclerViewLoadingView"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/to_constraint_view_load"
+        android:onClick="toConstraintLoadingView"
+        />
 
 </LinearLayout>

@@ -32,6 +32,7 @@
         <activity android:name=".wrapview.WrapRecyclerViewItemActivity" android:label="@string/to_recycler_view_load" />
 
         <activity android:name=".wrapfragment.WrapFragmentActivity" android:label="@string/to_wrap_fragment" />
+        <activity android:name=".wrapview.WrapConstraintViewActivity" android:label="@string/to_wrap_constraint"/>
     </application>
 
 </manifest>

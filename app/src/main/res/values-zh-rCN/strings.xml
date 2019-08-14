@@ -2,6 +2,7 @@
     <string name="to_wrap_activity">Wrap Activity</string>
     <string name="to_wrap_view">Wrap View</string>
     <string name="to_wrap_fragment">Wrap Fragment</string>
+    <string name="to_wrap_constraint">在Constraint中使用</string>
     <string name="to_load_success">加载成功（全局统一UI）</string>
     <string name="to_load_failed">加载失败（全局统一UI）</string>
     <string name="to_load_empty">空态（全局统一UI）</string>
@@ -14,6 +15,7 @@
     <string name="to_scroll_view">为多个View显示状态</string>
     <string name="to_grid_view_load">在GridView中使用</string>
     <string name="to_recycler_view_load">在RecyclerView中使用</string>
+    <string name="to_constraint_view_load">在ConstraintLayout中使用</string>
     <string name="to_special">特殊的Loading UI</string>
     <string name="wrap_single_view">加载状态仅显示在某个View的区域</string>
 </resources>
