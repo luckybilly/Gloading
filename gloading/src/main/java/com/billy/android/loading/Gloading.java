@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
@@ -15,12 +16,21 @@ import android.widget.FrameLayout.LayoutParams;
  * usage:<br>
  *  //if set true, logs will print into logcat<br>
  *  Gloading.debug(trueOrFalse);<br>
+ *
  *  //init the default loading status view creator ({@link Adapter})<br>
  *  Gloading.initDefault(adapter);<br>
+ *
  *  //wrap an activity. return the holder<br>
  *  Holder holder = Gloading.getDefault().wrap(activity);<br>
+ *
  *  //wrap an activity and set retry task. return the holder<br>
  *  Holder holder = Gloading.getDefault().wrap(activity).withRetry(retryTask);<br>
+ *
+ *  //wrap a view and set retry task. return the holder<br>
+ *  Holder holder = Gloading.getDefault().wrap(view).withRetry(retryTask);<br>
+ *
+ *  //cover a view which relatives to another view within a parent of RelativeLayout or ConstraintLayout parent
+ *  Holder holder = Gloading.getDefault().cover(view).withRetry(retryTask);<br>
  *  <br>
  *  holder.showLoading() //show loading status view by holder<br>
  *  holder.showLoadSuccess() //show load success status view by holder (frequently, hide gloading)<br>
@@ -129,6 +139,23 @@ public class Gloading {
         }
         LayoutParams newLp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         wrapper.addView(view, newLp);
+        return new Holder(mAdapter, view.getContext(), wrapper);
+    }
+
+    /**
+     * loadingStatusView shows cover the view with the same LayoutParams object
+     * this method is useful with RelativeLayout and ConstraintLayout
+     * @param view the view which needs show loading status
+     * @return Holder
+     */
+    public Holder cover(View view) {
+        ViewParent parent = view.getParent();
+        if (parent == null) {
+            throw new RuntimeException("view has no parent to show gloading as cover!");
+        }
+        ViewGroup viewGroup = (ViewGroup) parent;
+        FrameLayout wrapper = new FrameLayout(view.getContext());
+        viewGroup.addView(wrapper, view.getLayoutParams());
         return new Holder(mAdapter, view.getContext(), wrapper);
     }
 
