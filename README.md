@@ -108,6 +108,16 @@ Gloading.Holder holder = Gloading.getDefault().wrap(view);
 Gloading.Holder holder = Gloading.getDefault().wrap(view).withRetry(retryTask);
 ```
 
+3.1.1 Cover something within `RelativeLayout` (or `ConstraintLayout`) (since: v1.1.0) 
+
+```java
+//Gloading will create a FrameLayout to cover it
+Gloading.Holder holder = Gloading.getDefault().cover(view);
+
+//with load failed retry task
+Gloading.Holder holder = Gloading.getDefault().cover(view).withRetry(retryTask);
+```
+
 3.2 Show status views for loading/loadFailed/empty/... by Gloading.Holder
 
 ```java

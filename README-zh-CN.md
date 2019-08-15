@@ -157,6 +157,13 @@ Gloading.Holder holder = Gloading.getDefault().wrap(view);
 Gloading.Holder holder = Gloading.getDefault().wrap(view).withRetry(retryTask);
 ```
 
+4.1 如果父容器为 `RelativeLayout` (或`ConstraintLayout`)，用cover可以保持与同级其它控件之间的关联关系（since: v1.1.0）
+```java
+Gloading.Holder holder = Gloading.getDefault().cover(view);
+//或
+Gloading.Holder holder = Gloading.getDefault().cover(view).withRetry(retryTask);
+```
+
 5、 使用`Holder`来显示各种加载状态
 
 ```java
