@@ -4,8 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.billy.android.loading.Gloading;
 import com.billy.android.loadingstatusview.BaseActivity;
@@ -38,7 +38,7 @@ public class WrapSingleViewActivity extends BaseActivity {
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int size = dm.widthPixels * 3 / 4;
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
         layoutParams.width = size;
         layoutParams.height = size;
         //failed by an error image url
@@ -50,7 +50,7 @@ public class WrapSingleViewActivity extends BaseActivity {
         //override this method in subclass to do special initialization
         if (mHolder == null) {
             //wrap view with default loading status view
-            mHolder = Gloading.getDefault().wrap(imageView).withRetry(new Runnable() {
+            mHolder = Gloading.getDefault().cover(imageView).withRetry(new Runnable() {
                 @Override
                 public void run() {
                     onLoadRetry();
