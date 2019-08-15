@@ -33,7 +33,7 @@ ext {
     siteUrl = 'https://github.com/luckybilly/Gloading'
     gitUrl = 'https://github.com/luckybilly/Gloading.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.1.0'
 
     developerId = 'billy'
     developerName = 'billy'
